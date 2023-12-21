@@ -45,3 +45,8 @@ et_model.fit(X_train, y_train)
 # Ocena modelu Extra Trees
 print("Wyniki dla Extra Trees:")
 evaluate_extra_trees(et_model, X_test, y_test)
+
+importances = et_model.feature_importances()
+print("Ważności cech w modelu Extra Trees:")
+for name, importance in zip(X.columns, importances):
+    print(f"{name}: {importance}")

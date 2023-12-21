@@ -14,6 +14,9 @@ class ExtraTreesClassifierModel:
 
     def predict_proba(self, X):
         return self.model.predict_proba(X)
+    
+    def feature_importances(self):
+        return self.model.feature_importances_
 
 def evaluate_model(model, X_test, y_test):
     # Calculate metrics
