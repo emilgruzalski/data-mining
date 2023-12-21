@@ -16,6 +16,8 @@ data['Sex'] = data['Sex'].astype('category')
 data['ChestPainType'] = data['ChestPainType'].astype('category')
 # Usunięcie kolumny 'RestingECG'
 data = data.drop('RestingECG', axis=1)
+# Usunięcie wiersza gdzie ciśnienie badanego człowieka wynosiło 0, ponieważ wskazuję to że badany jest trupem.
+data = data[data.RestingBP != 0]
 data['ExerciseAngina'] = data['ExerciseAngina'].astype('category')
 data['ST_Slope'] = data['ST_Slope'].astype('category')
 
