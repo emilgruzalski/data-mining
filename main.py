@@ -7,10 +7,10 @@ from extra_trees import ExtraTreesClassifierModel, evaluate_model as evaluate_ex
 data = pd.read_csv('heart.csv')
 
 # Przetwarzanie danych
-# (Assuming the existing preprocessing steps are appropriate for both models)
 data['Sex'] = data['Sex'].astype('category')
 data['ChestPainType'] = data['ChestPainType'].astype('category')
-data['RestingECG'] = data['RestingECG'].astype('category')
+# Usunięcie kolumny 'RestingECG'
+data = data.drop('RestingECG', axis=1)
 data['ExerciseAngina'] = data['ExerciseAngina'].astype('category')
 data['ST_Slope'] = data['ST_Slope'].astype('category')
 
