@@ -1,31 +1,42 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from mlp import MLPClassifier, evaluate_model
-from numpy.random import seed
+from mlp import MLPClassifier, evaluate_model as evaluate_mlp
+from extra_trees import ExtraTreesClassifierModel, evaluate_model as evaluate_extra_trees
 
 # Wczytanie danych
-data = pd.read_csv('ścieżka_do_pliku.csv')
+data = pd.read_csv('heart.csv')
 
-# Wyspecyfikowanie zmiennych
+# Przetwarzanie danych
+# (Assuming the existing preprocessing steps are appropriate for both models)
 data['Sex'] = data['Sex'].astype('category')
 data['ChestPainType'] = data['ChestPainType'].astype('category')
 data['RestingECG'] = data['RestingECG'].astype('category')
 data['ExerciseAngina'] = data['ExerciseAngina'].astype('category')
 data['ST_Slope'] = data['ST_Slope'].astype('category')
-data['HeartDisease'] = data['HeartDisease'].astype('int')
 
-# Ustawienie ziarna generatora liczb losowych
-seed_value = int(data.index.mean())
-seed(seed_value)
+# Konwersja danych kategorialnych na numeryczne
+data = pd.get_dummies(data, drop_first=True)
 
-# Podział danych na zbiory uczący i testowy
+# Podział danych na cechy i etykiety
 X = data.drop('HeartDisease', axis=1)
 y = data['HeartDisease']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=seed_value)
+
+# Podział danych na zbiory uczące i testowe
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Trenowanie modelu MLP
 mlp_model = MLPClassifier()
 mlp_model.fit(X_train, y_train)
 
-# Ewaluacja modelu
-evaluate_model(mlp_model, X_test, y_test)
+# Ocena modelu MLP
+print("Wyniki dla MLP:")
+evaluate_mlp(mlp_model, X_test, y_test)
+print("\n")
+
+# Trenowanie modelu Extra Trees
+et_model = ExtraTreesClassifierModel()
+et_model.fit(X_train, y_train)
+
+# Ocena modelu Extra Trees
+print("Wyniki dla Extra Trees:")
+evaluate_extra_trees(et_model, X_test, y_test)
