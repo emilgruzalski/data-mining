@@ -3,8 +3,8 @@ from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_sc
 import matplotlib.pyplot as plt
 
 class MLPClassifier(SklearnMLPClassifier):
-    def __init__(self):
-        super().__init__(hidden_layer_sizes=(100,), activation='relu', solver='adam', random_state=1)
+    def __init__(self, random_state=None):
+        super().__init__(hidden_layer_sizes=(100,), activation='relu', solver='adam', random_state=random_state)
 
 def evaluate_model(model, X_test, y_test):
     # Obliczenie współczynników
@@ -30,8 +30,8 @@ def evaluate_model(model, X_test, y_test):
     plt.show()
 
     # Wyświetlenie wyników
-    print(f'Accuracy: {accuracy:.2f}')
-    print(f'Recall: {recall:.2f}')
-    print(f'Precision: {precision:.2f}')
-    print(f'F1 Score: {f1:.2f}')
-    print(f'ROC AUC: {roc_auc:.2f}')
+    print(f'Accuracy: {accuracy:.4f}')
+    print(f'Recall: {recall:.4f}')
+    print(f'Precision: {precision:.4f}')
+    print(f'F1 Score: {f1:.4f}')
+    print(f'ROC AUC: {roc_auc:.4f}')

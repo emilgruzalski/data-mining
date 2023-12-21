@@ -6,6 +6,11 @@ from extra_trees import ExtraTreesClassifierModel, evaluate_model as evaluate_ex
 # Wczytanie danych
 data = pd.read_csv('heart.csv')
 
+# Ustawienie ziarna generatora liczb losowych
+index_values = data.index.to_numpy()
+seed_value = int(index_values.mean())
+print(f"Seed value: {seed_value}")
+
 # Przetwarzanie danych
 data['Sex'] = data['Sex'].astype('category')
 data['ChestPainType'] = data['ChestPainType'].astype('category')
@@ -22,10 +27,10 @@ X = data.drop('HeartDisease', axis=1)
 y = data['HeartDisease']
 
 # Podział danych na zbiory uczące i testowe
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=seed_value)
 
 # Trenowanie modelu MLP
-mlp_model = MLPClassifier()
+mlp_model = MLPClassifier(random_state=seed_value)
 mlp_model.fit(X_train, y_train)
 
 # Ocena modelu MLP
@@ -34,7 +39,7 @@ evaluate_mlp(mlp_model, X_test, y_test)
 print("\n")
 
 # Trenowanie modelu Extra Trees
-et_model = ExtraTreesClassifierModel()
+et_model = ExtraTreesClassifierModel(random_state=seed_value)
 et_model.fit(X_train, y_train)
 
 # Ocena modelu Extra Trees
