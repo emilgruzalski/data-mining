@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from Cart import Cart
 
 # Load, set and remove lack of data
 cars = pd.read_csv("auto_mpg.csv", sep=";", na_values=' ')
@@ -21,3 +22,6 @@ y = cars.mpg
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=seed_value)
 
+cart_model = Cart(X_train, X_test, y_train, y_test, seed_value)
+cart_model.model_raitings()
+cart_model.variables_hierarchy()
