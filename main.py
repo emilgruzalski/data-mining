@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from Cart import Cart
+from cart import Cart
+from sgd import SGD
 
 # Load, set and remove lack of data
 cars = pd.read_csv("auto_mpg.csv", sep=";", na_values=' ')
@@ -25,3 +26,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 cart_model = Cart(X_train, X_test, y_train, y_test, seed_value)
 cart_model.model_raitings()
 cart_model.variables_hierarchy()
+
+sgd_model = SGD(X_train, X_test, y_train, y_test, seed_value)
+sgd_model.plot_predictions()
+sgd_model.feature_importance()
