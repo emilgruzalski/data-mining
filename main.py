@@ -1,56 +1,32 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from mlp import MLPClassifier, evaluate_model as evaluate_mlp
-from extra_trees import ExtraTreesClassifierModel, evaluate_model as evaluate_extra_trees
+from cart import Cart
+from sgd import SGD
 
-# Load data
-data = pd.read_csv('heart.csv')
+# Load, set and remove lack of data
+cars = pd.read_csv("auto_mpg.csv", sep=";", na_values=' ')
+cars.dropna(how="any", inplace=True)
 
-# Set the seed for the random number generator
-index_values = data.index.to_numpy()
+index_values = cars.index.to_numpy()
+
+cars.displacement = cars.displacement.str.replace(',', '.').astype(float)
+cars.acceleration = cars.acceleration.str.replace(',', '.').astype(float)
+cars.mpg = cars.mpg.str.replace(',', '.').astype(float)
+cars.set_index('car_name', inplace=True)
+
+# Set seed and split data for two sets
 seed_value = int(index_values.mean())
 print(f"Seed value: {seed_value}")
 
-# Data processing
-data['Sex'] = data['Sex'].astype('category')
-data['ChestPainType'] = data['ChestPainType'].astype('category')
-# Removing the 'RestingECG' column
-data = data.drop('RestingECG', axis=1)
-# Removing the row where the human's blood pressure was 0, as it indicates that the person is deceased.
-data = data[data.RestingBP != 0]
-data['ExerciseAngina'] = data['ExerciseAngina'].astype('category')
-data['ST_Slope'] = data['ST_Slope'].astype('category')
+X = cars.drop('mpg', axis=1)
+y = cars.mpg
 
-# Convert categorical data to numerical
-data = pd.get_dummies(data, drop_first=True)
-
-# Split data into features and labels
-X = data.drop('HeartDisease', axis=1)
-y = data['HeartDisease']
-
-# Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=seed_value)
 
-# Train the MLP model
-mlp_model = MLPClassifier(random_state=seed_value)
-mlp_model.fit(X_train, y_train)
+cart_model = Cart(X_train, X_test, y_train, y_test, seed_value)
+cart_model.model_raitings()
+cart_model.variables_hierarchy()
 
-# Evaluate the MLP model
-print("Results for MLP:")
-evaluate_mlp(mlp_model, X_test, y_test)
-print("\n")
-
-# Train the Extra Trees model
-et_model = ExtraTreesClassifierModel(random_state=seed_value)
-et_model.fit(X_train, y_train)
-
-# Evaluate the Extra Trees model
-print("Results for Extra Trees:")
-evaluate_extra_trees(et_model, X_test, y_test)
-print("\n")
-
-# Feature importances in the Extra Trees model
-importances = et_model.feature_importances()
-print("Feature importances in the Extra Trees model:")
-for name, importance in zip(X.columns, importances):
-    print(f"{name}: {importance}")
+sgd_model = SGD(X_train, X_test, y_train, y_test, seed_value)
+sgd_model.plot_predictions()
+sgd_model.feature_importance()
