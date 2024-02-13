@@ -1,10 +1,10 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from mlp import MLPClassifier, evaluate_model as evaluate_mlp
-from extra_trees import ExtraTreesClassifierModel, evaluate_model as evaluate_extra_trees
+from src.mlp import MLPClassifier, evaluate_model as evaluate_mlp
+from src.extra_trees import ExtraTreesClassifierModel, evaluate_model as evaluate_extra_trees
 
 # Load data
-data = pd.read_csv('heart.csv')
+data = pd.read_csv('../data/heart.csv')
 
 # Set the seed for the random number generator
 index_values = data.index.to_numpy()
