@@ -8,7 +8,7 @@ This repository contains three Jupyter notebooks, each dedicated to a distinct d
 
 - **Objective**: To analyze the fuel efficiency of various automobiles, measured in miles per gallon (MPG), and to understand how different vehicle characteristics influence fuel efficiency.
 - **Dataset**: `auto_mpg.csv`
-- **Key Aspects**: The notebook likely includes data preprocessing, exploratory data analysis (EDA), and possibly predictive modeling to assess fuel efficiency based on attributes like horsepower, weight, and engine displacement.
+- **Key Aspects**: The notebook includes data preprocessing, exploratory data analysis (EDA), and possibly predictive modeling to assess fuel efficiency based on attributes like horsepower, weight, and engine displacement.
 
 ### 2. Exploratory Data Analysis of Red Wine (`red_wine.ipynb`)
 
@@ -20,7 +20,7 @@ This repository contains three Jupyter notebooks, each dedicated to a distinct d
 
 - **Objective**: To analyze indicators of heart disease and to build a model capable of predicting heart disease presence based on clinical parameters.
 - **Dataset**: `heart.csv`, containing clinical measures related to heart disease in individuals.
-- **Key Aspects**: This notebook likely includes data cleaning, EDA, feature selection, and the application of machine learning models for prediction.
+- **Key Aspects**: This notebook includes data cleaning, EDA, feature selection, and the application of machine learning models for prediction.
 
 ## Getting Started
 
@@ -45,8 +45,6 @@ Install the required Python libraries by running:
 ```
 pip install -r requirements.txt
 ```
-
-(Assuming a `requirements.txt` file exists with all the necessary Python packages listed)
 
 ## License
 
