@@ -1,51 +1,53 @@
-# Red Wine Quality Analysis
+# Data Mining Projects Repository
 
-## Description
-This repository hosts a project focused on analyzing red wine quality using machine learning techniques. The project leverages models like Random Forest Classifier and Regressor, and KMeans clustering, providing insights into factors influencing wine quality.
+This repository contains three Jupyter notebooks, each dedicated to a distinct data mining project. These projects explore datasets related to automobile fuel efficiency, red wine characteristics, and heart disease indicators. Below is a brief overview of each project.
 
-## Features
-- Loading data from the CSV file.
-- Splitting data into training and test sets.
-- Implementing Random Forest models using `sklearn`'s `RandomForestClassifier` and `RandomForestRegressor`.
-- KMeans clustering for data segmentation.
-- Model evaluation with accuracy score, mean absolute error, and other relevant metrics.
-- Data visualization using matplotlib and seaborn for insightful EDA.
-- GridSearchCV for hyperparameter tuning in models.
+## Projects Overview
 
-## Data Categories
-The project analyzes the following attributes from the red wine dataset:
-1. **Fixed Acidity** [Numerical]
-2. **Volatile Acidity** [Numerical]
-3. **Citric Acid** [Numerical]
-4. **Residual Sugar** [Numerical]
-5. **Chlorides** [Numerical]
-6. **Free Sulfur Dioxide** [Numerical]
-7. **Total Sulfur Dioxide** [Numerical]
-8. **Density** [Numerical]
-9. **pH** [Numerical]
-10. **Sulphates** [Numerical]
-11. **Alcohol** [Numerical]
-12. **Quality** (Rating) [Categorical]
+### 1. Automobile Fuel Efficiency Analysis (`auto_mpg.ipynb`)
 
-## Requirements
+- **Objective**: To analyze the fuel efficiency of various automobiles, measured in miles per gallon (MPG), and to understand how different vehicle characteristics influence fuel efficiency.
+- **Dataset**: `auto_mpg.csv`
+- **Key Aspects**: The notebook likely includes data preprocessing, exploratory data analysis (EDA), and possibly predictive modeling to assess fuel efficiency based on attributes like horsepower, weight, and engine displacement.
+
+### 2. Exploratory Data Analysis of Red Wine (`red_wine.ipynb`)
+
+- **Objective**: To perform an exploratory analysis of red wine characteristics, focusing on understanding the factors that influence wine quality.
+- **Dataset**: `red_wine.csv`, which includes data on various chemical properties of wines and their quality ratings.
+- **Key Aspects**: The analysis involves loading the dataset, data cleaning, visualization, and statistical analysis to explore relationships between wine properties and quality.
+
+### 3. Heart Disease Prediction Analysis (`heart.ipynb`)
+
+- **Objective**: To analyze indicators of heart disease and to build a model capable of predicting heart disease presence based on clinical parameters.
+- **Dataset**: `heart.csv`, containing clinical measures related to heart disease in individuals.
+- **Key Aspects**: This notebook likely includes data cleaning, EDA, feature selection, and the application of machine learning models for prediction.
+
+## Getting Started
+
+To work with these notebooks, clone the repository and ensure you have Jupyter Notebook or JupyterLab installed. Each notebook is self-contained and includes comments to guide you through the analysis steps.
+
+## Prerequisites
+
 - Python 3.x
-- `pandas`
-- `sklearn`
-- `matplotlib`
+- Jupyter Notebook or JupyterLab
+- Required Python libraries: pandas, matplotlib, seaborn, scikit-learn
 
 ## Installation
-Ensure you have Python installed along with the libraries mentioned above. If not, you can install them using the following command:
-```bash
-pip install pandas scikit-learn matplotlib
+
+Clone this repository to your local machine using:
+
+```
+git clone https://github.com/emilgruzalski/data-mining.git
 ```
 
-## Usage
-To run the project, clone the repository and execute the `red_wine.py` file:
-```bash
-git clone https://github.com/emilgruzalski/red-wine.git
-cd red-wine
-python red_wine.py
+Install the required Python libraries by running:
+
 ```
+pip install -r requirements.txt
+```
+
+(Assuming a `requirements.txt` file exists with all the necessary Python packages listed)
 
 ## License
-This project is released under the MIT License.
+
+This project is licensed under the MIT License.
